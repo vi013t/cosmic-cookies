@@ -1,0 +1,20 @@
+{
+	"name": "cosmic-cookies",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "cs375 project thing",
+	"main": "src/server/server.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vi013t/cosmic-cookies.git"
+	},
+	"author": "violet, max",
+	"license": "CC-BY-NC-SA-4.0",
+	"bugs": {
+		"url": "https://github.com/vi013t/cosmic-cookies/issues"
+	},
+	"homepage": "https://github.com/vi013t/cosmic-cookies#readme",
+	"dependencies": {
+		"express": "^5.1.0"
+	}
+}
