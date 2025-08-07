@@ -13,7 +13,7 @@
 html {
 	width: 100%;
 	height: 100%;
-	background-image: url("images/stripe.png");
+	background-image: url("assets/images/stripe.png");
 	background-repeat: repeat;
 	animation: bgshift 5s infinite;
 	animation-timing-function: linear;
