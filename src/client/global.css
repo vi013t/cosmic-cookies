@@ -7,6 +7,7 @@
 	background: transparent;
 	font-weight: normal;
 	text-align: center;
+	font-family: sans-serif;
 }
 
 html {
@@ -19,8 +20,13 @@ html {
 }
 
 @keyframes bgshift {
-  from {background-position: 0px 0px;}
-  to {background-position: 64px 64px;}
+	from {
+		background-position: 0px 0px;
+	}
+
+	to {
+		background-position: 64px 64px;
+	}
 }
 
 body {
@@ -29,13 +35,13 @@ body {
 }
 
 h1 {
-	text-align:center;
-	font-size:50px;
+	text-align: center;
+	font-size: 50px;
 }
 
 h2 {
 	color: #BBBBBB;
-	font-size:55px;
+	font-size: 55px;
 	z-index: 1;
 	font-weight: bold;
 }
@@ -45,7 +51,10 @@ input {
 	background: white;
 }
 
-table, tr, th, td {
+table,
+tr,
+th,
+td {
 	border: 2px solid #999999;
 	margin-left: auto;
 	margin-right: auto;
@@ -53,12 +62,12 @@ table, tr, th, td {
 
 th {
 	background-color: #FFFFFFAA;
-	font-size:25px;
+	font-size: 25px;
 	font-weight: bold;
 }
 
 td {
-	font-size:18px;
+	font-size: 18px;
 }
 
 video[controls],
@@ -74,17 +83,45 @@ a {
 }
 
 @keyframes header1 {
-  0% {transform: scaleY(1.5)  skewX(-10deg) skewY(3deg);}
-  50% {transform: scaleY(0.8) scaleX(0.9) skewX(10deg) skewY(-10deg);}
-  100% {transform: scaleY(1.5) skewX(-10deg) skewY(3deg);}
+	0% {
+		transform: scaleY(1.5) skewX(-10deg) skewY(3deg);
+	}
+
+	50% {
+		transform: scaleY(0.8) scaleX(0.9) skewX(10deg) skewY(-10deg);
+	}
+
+	100% {
+		transform: scaleY(1.5) skewX(-10deg) skewY(3deg);
+	}
 }
 
 @keyframes header2 {
-	0% {transform: scaleY(0.65) skewY(3deg);}
-	10% {transform: scaleY(0.85) skewY(1deg);}
-	35% {transform: scaleY(1.35) scaleX(0.9) skewY(-3deg);}
-	50% {transform: scaleY(1.5) scaleX(0.85) skewY(-1deg);}
-	65% {transform: scaleY(1.35) scaleX(0.9) skewY(-3deg);}
-	90% {transform: scaleY(0.85) skewY(1deg);}
-	100% {transform: scaleY(0.65) skewY(3deg);}
+	0% {
+		transform: scaleY(0.65) skewY(3deg);
+	}
+
+	10% {
+		transform: scaleY(0.85) skewY(1deg);
+	}
+
+	35% {
+		transform: scaleY(1.35) scaleX(0.9) skewY(-3deg);
+	}
+
+	50% {
+		transform: scaleY(1.5) scaleX(0.85) skewY(-1deg);
+	}
+
+	65% {
+		transform: scaleY(1.35) scaleX(0.9) skewY(-3deg);
+	}
+
+	90% {
+		transform: scaleY(0.85) skewY(1deg);
+	}
+
+	100% {
+		transform: scaleY(0.65) skewY(3deg);
+	}
 }
