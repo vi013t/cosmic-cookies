@@ -24,7 +24,6 @@ app.get("/search/:term", (request, response) => {
 </html>`);
 });
 
-app.get("/profile", (request, response) => {});
 app.get("/item", (request, response) => {});
 
 app.listen(port, hostname, () => {

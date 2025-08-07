@@ -1,0 +1,51 @@
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	background-image: linear-gradient(to bottom, #1e1e2e, #181825);
+	height: 100%;
+
+	>div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		position: relative;
+
+		>span {
+			color: #9399b2;
+		}
+	}
+}
+
+input {
+	position: relative;
+	background-color: #11111b;
+	color: #cdd6f4;
+	border-radius: 0.5em;
+	font-size: 1rem;
+	padding: 0.5em;
+	width: 20em;
+}
+
+#login {
+	background-image: linear-gradient(#b4befe, #89b4fa);
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	border-radius: 0.5em;
+	box-shadow: 0px 0px 0.5rem black;
+	margin-top: 1rem;
+}
+
+h1 {
+	color: #cdd6f4;
+	margin-bottom: 1rem;
+}
+
+.show-password {
+	position: absolute;
+	bottom: 0.5rem;
+	right: 0.6rem;
+	width: 1.25rem;
+	height: 1.25rem;
+}
