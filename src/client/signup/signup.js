@@ -1,26 +1,30 @@
-$(".show-password").on("click", event => {
-	const input = $(".show-password").previousElementSibling;
+select(".show-password", button => {
+	button.addEventListener("click", event => {
+		const input = button.previousElementSibling;
 
-	// Show password
-	if (input.type === "password") {
-		input.type = "text";
-	}
+		// Show password
+		if (input.type === "password") {
+			input.type = "text";
+		}
 
-	// Hide password
-	else {
-		input.type = "password";
-	}
+		// Hide password
+		else {
+			input.type = "password";
+		}
+	});
 });
 
-$("#create").on("click", async () => {
-	const email = $("#email").value;
-	const username = $("#username").value;
-	const password = $("#password").value;
+select("#create", createButton => {
+	createButton.addEventListener("click", async () => {
+		const email = select("#email").value;
+		const username = select("#username").value;
+		const password = select("#password").value;
 
-	const error = await signUp(email, username, password);
+		const error = await signUp(email, username, password);
 
-	if (error) {
-	} else {
-		window.location.href = "/profile";
-	}
+		if (error) {
+		} else {
+			window.location.href = "/profile";
+		}
+	});
 });

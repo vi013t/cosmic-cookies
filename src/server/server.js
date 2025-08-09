@@ -24,7 +24,9 @@ app.get("/search/:term", (request, response) => {
 </html>`);
 });
 
-app.get("/item", (request, response) => {});
+app.get("/", (_request, response) => {
+	response.redirect("/home");
+});
 
 app.listen(port, hostname, () => {
 	console.log(`http://${hostname}:${port}`);

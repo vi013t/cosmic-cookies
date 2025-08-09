@@ -1,24 +1,28 @@
-$("#login").on("click", async () => {
-	const email = $("#email").value;
-	const password = $("#password").value;
-	const error = await logIn(email, password);
-	if (error) {
-		console.error(error);
-	} else {
-		window.location.href = "/profile";
-	}
+select("#login", loginButton => {
+	loginButton.addEventListener("click", async () => {
+		const email = select("#email").value;
+		const password = select("#password").value;
+		const error = await logIn(email, password);
+		if (error) {
+			console.error(error);
+		} else {
+			window.location.href = "/profile";
+		}
+	});
 });
 
-$(".show-password").on("click", event => {
-	const input = $(".show-password").previousElementSibling;
+select(".show-password", button => {
+	button.addEventListener("click", event => {
+		const input = button.previousElementSibling;
 
-	// Show password
-	if (input.type === "password") {
-		input.type = "text";
-	}
+		// Show password
+		if (input.type === "password") {
+			input.type = "text";
+		}
 
-	// Hide password
-	else {
-		input.type = "password";
-	}
+		// Hide password
+		else {
+			input.type = "password";
+		}
+	});
 });

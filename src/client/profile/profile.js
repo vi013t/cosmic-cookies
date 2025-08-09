@@ -1,17 +1,19 @@
 onLogin(user => {
-	$("#username").textContent = `@${user.username}`;
+	select("*[data-username]", element => (element.textContent = `@${user.username}`));
 });
 
 onLogout(() => {
 	window.location.href = "/login";
 });
 
-$("#logout").on("click", async () => {
-	const error = await logOut();
+select("#logout", logoutButton => {
+	logoutButton.addEventListener("click", async () => {
+		const error = await logOut();
 
-	if (error) {
-		console.error(error);
-	} else {
-		window.location.href = "/index.html";
-	}
+		if (error) {
+			console.error(error);
+		} else {
+			window.location.href = "/index.html";
+		}
+	});
 });
