@@ -13,7 +13,7 @@ select("#logout", logoutButton => {
 		if (error) {
 			console.error(error);
 		} else {
-			window.location.href = "/index.html";
+			window.location.href = "/";
 		}
 	});
 });
