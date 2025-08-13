@@ -125,7 +125,31 @@ async function signUp(email, username, password) {
 			reviews: [],
 			id: userInfo.user.uid,
 		};
-		await db.collection("users").add(user);
+		await db.collection("users").doc(userInfo.user.uid).set(user);
+		return null;
+	} catch (error) {
+		return error;
+	}
+}
+
+/**
+ * Hopefull creates a new review in the database.
+ * sorry idk what everything means i'm just copying your style
+ */
+async function review(item, stars, comment) {
+	try {
+		let review = {
+			user: currentUser.id,
+			item: item,
+			stars: stars,
+			comment: comment
+		};
+		const reviewId = await db.collection("reviews").doc();
+		await reviewId.set(review);
+		userRef = await db.collection("users").doc("ORqDxy2EQYNQVXExTrotP5Thd6H3")
+		userRef.update({
+			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id)
+		});
 		return null;
 	} catch (error) {
 		return error;
