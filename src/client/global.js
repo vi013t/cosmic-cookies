@@ -135,6 +135,12 @@ async function signUp(email, username, password) {
 /**
  * Hopefull creates a new review in the database.
  * sorry idk what everything means i'm just copying your style
+ *
+ * @param {string} item the item name
+ * @param {string} stars the number out of five of the review
+ * @param {string} comment the comment for the review
+ *
+ * @returns {null | Promise<unknown>} The error, if one occurred.
  */
 async function review(item, stars, comment) {
 	try {
