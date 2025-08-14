@@ -2,11 +2,16 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="../global.css" />
+		<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore-compat.js"></script>
+		<script src="../global.js"></script>
+		<script defer src="./item.js"></script>
 	</head>
 
 	<body>
-		<div id="dropshadow" style="animation: header2 3s infinite"><h2>item name</h2></div>
-		<h1 style="margin: 25px">item name</h1>
+		<div id="dropshadow" style="animation: header2 3s infinite"><h2 data-item-name>item name</h2></div>
+		<h1 style="margin: 25px" data-item-name>item name</h1>
 
 		<div style="width: 100%">
 			<h3>search another?</h3>
@@ -25,7 +30,7 @@
 			<tbody id="table">
 				<tr>
 					<td>test</td>
-					<td><img src="assets/images/star3.png" alt="3 stars" /></td>
+					<td><img src="/assets/images/star3.png" alt="3 stars" /></td>
 					<td>test</td>
 				</tr>
 			</tbody>

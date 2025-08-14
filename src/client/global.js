@@ -148,13 +148,13 @@ async function review(item, stars, comment) {
 			user: currentUser.id,
 			item: item,
 			stars: stars,
-			comment: comment
+			comment: comment,
 		};
 		const reviewId = await db.collection("reviews").doc();
 		await reviewId.set(review);
-		userRef = await db.collection("users").doc("ORqDxy2EQYNQVXExTrotP5Thd6H3")
+		userRef = await db.collection("users").doc("ORqDxy2EQYNQVXExTrotP5Thd6H3");
 		userRef.update({
-			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id)
+			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id),
 		});
 		return null;
 	} catch (error) {
@@ -220,3 +220,12 @@ firebase.auth().onAuthStateChanged(async user => {
 		logoutHooks.forEach(hook => hook());
 	}
 });
+
+/**
+ * Gets the value of a variable passed from the server.
+ *
+ * See `sendFileWithData()` on the server.
+ */
+function getServerData(key) {
+	return select("head").getAttribute(`data-${key}`);
+}
