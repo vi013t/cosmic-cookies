@@ -1,9 +1,19 @@
-onLogin(user => {
+const username = getServerData("user");
+db.collection("users")
+	.where("username", "==", username)
+	.get()
+	.then(query => showUser(query.docs[0].data()));
+
+function showUser(user) {
 	select("*[data-username]", element => (element.textContent = `@${user.username}`));
+}
+
+onLogin(user => {
+	if (!username) showUser(user);
 });
 
 onLogout(() => {
-	window.location.href = "/login";
+	if (!username) window.location.href = "/login";
 });
 
 select("#logout", logoutButton => {
