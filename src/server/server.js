@@ -45,7 +45,8 @@ function sendFileWithData(response, path, data) {
 	let html = readFileSync(
 		join(dirname(import.meta.url), `../client/${path}`)
 			.substring(5)
-			.replace("%20", " "),
+			.replaceAll(/%20/g, " ")
+			.replaceAll(/C:\\C:\\/g, "C:\\"),
 		{ encoding: "utf8" },
 	);
 
