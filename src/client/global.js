@@ -152,7 +152,7 @@ async function review(item, stars, comment) {
 		};
 		const reviewId = await db.collection("reviews").doc();
 		await reviewId.set(review);
-		userRef = await db.collection("users").doc("ORqDxy2EQYNQVXExTrotP5Thd6H3");
+		userRef = await db.collection("users").doc(currentUser.id);
 		userRef.update({
 			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id),
 		});

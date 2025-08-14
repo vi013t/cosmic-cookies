@@ -42,13 +42,12 @@ const hostname = "localhost";
  * @returns {void}
  */
 function sendFileWithData(response, path, data) {
-	let html = readFileSync(
-		join(dirname(import.meta.url), `../client/${path}`)
+	const filePath = join(dirname(import.meta.url), `../client/${path}`)
 			.substring(5)
 			.replaceAll(/%20/g, " ")
-			.replaceAll(/C:\\C:\\/g, "C:\\"),
-		{ encoding: "utf8" },
-	);
+			.replaceAll(/C:\\/g, "");
+	console.log(filePath);
+	let html = readFileSync(filePath, { encoding: "utf8" });
 
 	let headAttributes = "";
 	Object.entries(data).forEach(([key, value]) => {
