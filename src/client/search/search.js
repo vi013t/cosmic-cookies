@@ -50,7 +50,7 @@ db.collection("reviews")
 			const starBlocker = document.createElement("span");
 			starBlocker.classList.add("star-blocker");
 			starBlocker.style.width = `${(5 - item.rating) * 2}rem`;
-			starBlocker.innerHTML = `&nbsp;&nbsp;(${item.rating}/5)`;
+			starBlocker.innerHTML = `&nbsp;&nbsp;(${reviews.filter(review => review.item === item.name).length})`;
 			starContainer.appendChild(starBlocker);
 
 			const p = document.createElement("p");
