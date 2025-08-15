@@ -6,6 +6,8 @@ db.collection("users")
 
 function showUser(user) {
 	select("*[data-username]", element => (element.textContent = `@${user.username}`));
+	select("*[data-display-name]", element => (element.textContent = `${user.displayName}`));
+	select("*[data-profile-picture]", element => (element.src = user.profilePicture));
 }
 
 onLogin(user => {

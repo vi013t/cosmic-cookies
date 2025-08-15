@@ -133,6 +133,16 @@ async function signUp(email, username, password) {
 }
 
 /**
+ * @param {string} text
+ */
+function normalize(text) {
+	return text
+		.trim()
+		.replaceAll(/[^\w\d ]/g, "")
+		.toLowerCase();
+}
+
+/**
  * Hopefull creates a new review in the database.
  * sorry idk what everything means i'm just copying your style
  *
@@ -146,7 +156,7 @@ async function review(item, stars, comment) {
 	try {
 		let review = {
 			user: currentUser.id,
-			item: item,
+			item: normalize(item),
 			stars: stars,
 			comment: comment,
 		};
@@ -228,4 +238,15 @@ firebase.auth().onAuthStateChanged(async user => {
  */
 function getServerData(key) {
 	return select("head").getAttribute(`data-${key}`);
+}
+
+/**
+ * @param {string} term
+ *
+ * @returns {void}
+ */
+function search(term) {
+	const params = new URLSearchParams({ term: normalize(term) });
+	const url = new URL(window.location.href);
+	window.location.href = new URL(`${url.origin}/search?${params}`).href;
 }

@@ -1,0 +1,38 @@
+body {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../assets/images/background2.jpg");
+	background-repeat: repeat-y;
+	background-position: center;
+	background-size: cover;
+}
+
+#search {
+	background-color: white;
+	width: 50%;
+	height: 3rem;
+	border-radius: 100vmax;
+	text-align: left;
+	padding-left: 1rem;
+	box-shadow: 0px 0px 1rem black;
+}
+
+h1 {
+	color: white;
+	text-shadow: 0px 0px 1rem black;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: calc(100vh - 6rem);
+	gap: 2rem;
+}
+
+#tags {
+	background: white;
+	border-radius: 100vmax;
+	font-size: 0.75rem;
+	padding: 0.3rem 2rem 0.3rem 2rem;
+	box-shadow: 0px 0px 1rem black;
+}

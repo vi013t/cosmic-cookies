@@ -6,68 +6,19 @@
 	border: none;
 	background: transparent;
 	font-weight: normal;
-	text-align: center;
 	font-family: sans-serif;
+	text-decoration: none;
+	color: black;
 }
 
 html {
-	width: 100%;
-	height: 100%;
-	background-image: url("assets/images/stripe.png");
-	background-repeat: repeat;
-	animation: bgshift 5s infinite;
-	animation-timing-function: linear;
-}
-
-@keyframes bgshift {
-	from {
-		background-position: 0px 0px;
-	}
-
-	to {
-		background-position: 64px 64px;
-	}
+	min-width: 100%;
+	min-height: 100%;
 }
 
 body {
 	width: 100%;
 	height: 100%;
-}
-
-h1 {
-	text-align: center;
-	font-size: 50px;
-}
-
-h2 {
-	color: #BBBBBB;
-	font-size: 55px;
-	z-index: 1;
-	font-weight: bold;
-}
-
-input {
-	padding: 10px;
-	background: white;
-}
-
-table,
-tr,
-th,
-td {
-	border: 2px solid #999999;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-th {
-	background-color: #FFFFFFAA;
-	font-size: 25px;
-	font-weight: bold;
-}
-
-td {
-	font-size: 18px;
 }
 
 video[controls],
@@ -76,52 +27,16 @@ a {
 	cursor: pointer;
 }
 
-#dropshadow {
-	position: absolute;
-	width: 100%;
-	z-index: -1;
-}
+nav {
+	display: flex;
+	background: white;
+	box-shadow: 0px 0px 1rem black;
 
-@keyframes header1 {
-	0% {
-		transform: scaleY(1.5) skewX(-10deg) skewY(3deg);
-	}
+	>* {
+		padding: 1rem;
 
-	50% {
-		transform: scaleY(0.8) scaleX(0.9) skewX(10deg) skewY(-10deg);
-	}
-
-	100% {
-		transform: scaleY(1.5) skewX(-10deg) skewY(3deg);
-	}
-}
-
-@keyframes header2 {
-	0% {
-		transform: scaleY(0.65) skewY(3deg);
-	}
-
-	10% {
-		transform: scaleY(0.85) skewY(1deg);
-	}
-
-	35% {
-		transform: scaleY(1.35) scaleX(0.9) skewY(-3deg);
-	}
-
-	50% {
-		transform: scaleY(1.5) scaleX(0.85) skewY(-1deg);
-	}
-
-	65% {
-		transform: scaleY(1.35) scaleX(0.9) skewY(-3deg);
-	}
-
-	90% {
-		transform: scaleY(0.85) skewY(1deg);
-	}
-
-	100% {
-		transform: scaleY(0.65) skewY(3deg);
+		&:last-child {
+			margin-left: auto;
+		}
 	}
 }

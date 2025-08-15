@@ -43,9 +43,9 @@ const hostname = "localhost";
  */
 function sendFileWithData(response, path, data) {
 	const filePath = join(dirname(import.meta.url), `../client/${path}`)
-			.substring(5)
-			.replaceAll(/%20/g, " ")
-			.replaceAll(/C:\\/g, "");
+		.substring(5)
+		.replaceAll(/%20/g, " ")
+		.replaceAll(/C:\\/g, "");
 	console.log(filePath);
 	let html = readFileSync(filePath, { encoding: "utf8" });
 

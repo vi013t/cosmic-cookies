@@ -1,8 +1,7 @@
-select("#search", searchButton => {
-	searchButton.addEventListener("keypress", event => {
+select("#search", searchInput => {
+	searchInput.addEventListener("keypress", event => {
 		if (event.key === "Enter") {
-			event.preventDefault();
-			window.location.href = `/search/${$("#search").value}`;
+			search(searchInput.value);
 		}
 	});
 });

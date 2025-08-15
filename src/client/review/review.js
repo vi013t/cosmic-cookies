@@ -21,15 +21,14 @@ document.getElementById("star5").addEventListener("click", async () => {
 	resetImg();
 });
 
-function changeImg( starpower ) {
+function changeImg(starpower) {
 	var image = document.getElementById("stars");
-	image.src = "../assets/images/star"+starpower+".png"
-
+	image.src = "../assets/images/star" + starpower + ".png";
 }
 
 function resetImg() {
 	var image = document.getElementById("stars");
-	image.src = "../assets/images/star"+stars+".png"
+	image.src = "../assets/images/star" + stars + ".png";
 }
 
 document.getElementById("submit").addEventListener("click", async () => {
@@ -39,7 +38,5 @@ document.getElementById("submit").addEventListener("click", async () => {
 	if (error) {
 		console.error(error);
 	} else {
-		console.log("yippee!!!");
-		window.location.href = "/item?item=" + item;
 	}
 });

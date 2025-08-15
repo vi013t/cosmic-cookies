@@ -11,33 +11,17 @@
 	</head>
 
 	<body>
-		<div id="dropshadow" style="animation: header1 3s infinite">
+		<nav>
+			<a href="/">Home</a>
+			<a href="/profile">Profile</a>
+		</nav>
+
+		<main>
+			<img data-profile-picture id="profile-picture" src="/assets/images/profile.jpg" />
+			<h1 data-display-name>Loading...</h1>
 			<h2 data-username>Loading...</h2>
-		</div>
-		<h1 style="margin: 25px" data-username>Loading...</h1>
 
-		<div style="width: 100%">
-			<h3>Search:</h3>
-			<input id="search" />
-		</div>
-
-		<table style="width: 60%">
-			<thead>
-				<tr>
-					<th>reviewer</th>
-					<th>star power</th>
-					<th>comments</th>
-				</tr>
-			</thead>
-			<tbody id="table">
-				<tr>
-					<td>test</td>
-					<td><img src="/assets/images/star3.png" alt="3 stars" /></td>
-					<td>test</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<button id="logout">Log Out</button>
+			<button id="logout">Log Out</button>
+		</main>
 	</body>
 </html>

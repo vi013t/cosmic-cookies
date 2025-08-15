@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="../global.css" />
+		<link rel="stylesheet" href="./item.css" />
 		<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore-compat.js"></script>
@@ -10,30 +11,13 @@
 	</head>
 
 	<body>
-		<div id="dropshadow" style="animation: header2 3s infinite"><h2 data-item-name>item name</h2></div>
-		<h1 style="margin: 25px" data-item-name>item name</h1>
+		<nav>
+			<a href="/">Home</a>
+			<a href="/profile">Profile</a>
+		</nav>
 
-		<div style="width: 100%">
-			<h3>search another?</h3>
-			<input id="search" />
-		</div>
-
-		<div style="margin-top: 40px"></div>
-		<table style="width: 60%">
-			<thead>
-				<tr>
-					<th>reviewer</th>
-					<th>star power</th>
-					<th>comments</th>
-				</tr>
-			</thead>
-			<tbody id="table">
-				<tr>
-					<td>test</td>
-					<td><img src="/assets/images/star3.png" alt="3 stars" /></td>
-					<td>test</td>
-				</tr>
-			</tbody>
-		</table>
+		<main>
+			<h1 data-item-name>Loading...</h1>
+		</main>
 	</body>
 </html>
