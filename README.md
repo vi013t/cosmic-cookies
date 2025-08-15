@@ -11,5 +11,5 @@ npm install
 To start the server:
 
 ```bash
-node src/server/server.js
+npm start
 ```
