@@ -56,3 +56,9 @@ body {
 	background-size: cover;
 	background-position: center;
 }
+
+#item-image {
+	width: 10rem;
+	margin-bottom: 3rem;
+	border: 3px solid white;
+}

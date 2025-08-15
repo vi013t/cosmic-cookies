@@ -1,42 +1,34 @@
-var stars = 5;
+let stars = 5;
 
-document.getElementById("star1").addEventListener("click", async () => {
-	stars = 1;
-	resetImg();
-});
-document.getElementById("star2").addEventListener("click", async () => {
-	stars = 2;
-	resetImg();
-});
-document.getElementById("star3").addEventListener("click", async () => {
-	stars = 3;
-	resetImg();
-});
-document.getElementById("star4").addEventListener("click", async () => {
-	stars = 4;
-	resetImg();
-});
-document.getElementById("star5").addEventListener("click", async () => {
-	stars = 5;
-	resetImg();
+select(".star", star => {
+	star.addEventListener("mouseenter", () => {
+		let sibling = star.nextElementSibling;
+		while (sibling) {
+			sibling.src = "/assets/images/single_star_empty.png";
+			sibling = sibling.nextElementSibling;
+		}
+
+		sibling = star;
+		while (sibling) {
+			sibling.src = "/assets/images/single_star.png";
+			sibling = sibling.previousElementSibling;
+		}
+
+		stars = Array.from(star.parentElement.children).indexOf(star) + 1;
+		console.log(stars);
+	});
 });
 
-function changeImg(starpower) {
-	var image = document.getElementById("stars");
-	image.src = "../assets/images/star" + starpower + ".png";
-}
+select("#submit").addEventListener("click", async () => {
+	const item = select("#item").value;
+	const image = select("#image").value;
+	const comments = select("#comments").value;
+	const description = select("#description").value;
+	const error = await review(item, stars, comments, image, description);
 
-function resetImg() {
-	var image = document.getElementById("stars");
-	image.src = "../assets/images/star" + stars + ".png";
-}
-
-document.getElementById("submit").addEventListener("click", async () => {
-	const item = document.getElementById("item").value;
-	const comments = document.getElementById("comments").value;
-	const error = await review(item, stars, comments);
 	if (error) {
 		console.error(error);
 	} else {
+		window.location.href = `/item/${normalize(item)}`;
 	}
 });

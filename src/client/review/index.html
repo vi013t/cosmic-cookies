@@ -15,27 +15,42 @@
 			<a href="/">Home</a>
 			<a href="/profile">Profile</a>
 		</nav>
-		<h1 style="margin: 25px">review a thing?</h1>
 
-		<div style="width: 100%">
-			<h3>item</h3>
-			<input id="item" />
-		</div>
-		<img src="../assets/images/star5.png" alt="stars" width="160" height="32" usemap="#starmap" id="stars" />
+		<main>
+			<h1>Review a New Item</h1>
 
-		<map name="starmap" style="cursor: pointer">
-			<area shape="rect" coords="0,0,32,32" alt="1" id="star1" onmouseover="changeImg(1)" onmouseout="resetImg()" />
-			<area shape="rect" coords="32,0,64,32" alt="2" id="star2" onmouseover="changeImg(2)" onmouseout="resetImg()" />
-			<area shape="rect" coords="64,0,96,32" alt="3" id="star3" onmouseover="changeImg(3)" onmouseout="resetImg()" />
-			<area shape="rect" coords="96,0,128,32" alt="4" id="star4" onmouseover="changeImg(4)" onmouseout="resetImg()" />
-			<area shape="rect" coords="128,0,160,32" alt="5" id="star5" onmouseover="changeImg(5)" onmouseout="resetImg()" />
-		</map>
+			<div class="input">
+				<h3>Item Name</h3>
+				<input id="item" />
+			</div>
 
-		<div style="width: 100%; margin-top: 15px">
-			<h3>comments</h3>
-			<input id="comments" style="width: 300px" />
-		</div>
+			<div class="input">
+				<h3>Item Description</h3>
+				<textarea id="description"></textarea>
+			</div>
 
-		<button id="submit">make review</button>
+			<div class="input">
+				<h3>Item Image Link</h3>
+				<input id="image" />
+			</div>
+
+			<div class="input">
+				<h3>Review Rating</h3>
+				<div class="stars">
+					<img class="star" src="/assets/images/single_star.png" />
+					<img class="star" src="/assets/images/single_star.png" />
+					<img class="star" src="/assets/images/single_star.png" />
+					<img class="star" src="/assets/images/single_star.png" />
+					<img class="star" src="/assets/images/single_star.png" />
+				</div>
+			</div>
+
+			<div class="input">
+				<h3>Review Comment</h3>
+				<textarea id="comments"></textarea>
+			</div>
+
+			<button id="submit">Submit</button>
+		</main>
 	</body>
 </html>

@@ -3,11 +3,25 @@ const reviews = [];
 
 select("*[data-item-name]", element => (element.textContent = itemName));
 
+const normalName = normalize(itemName);
+
 db.collection("reviews")
-	.where("item", "==", normalize(itemName))
+	.where("item", "==", normalName)
 	.get()
-	.then(docs => {
+	.then(async docs => {
 		docs.forEach(doc => reviews.push(doc.data()));
+
+		let itemEntry = (await db.collection("items").where("name", "==", normalName).get()).docs;
+		if (docs.size === 0) {
+			await db.collection("items").add({
+				name: normalName,
+				image: "https://as2.ftcdn.net/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg",
+			});
+			itemEntry = (await db.collection("items").where("name", "==", normalName).get()).docs;
+		}
+		const itemData = itemEntry[0].data();
+
+		select("*[data-item-image]", img => (img.src = itemData.image));
 
 		reviews.forEach(async review => {
 			const author = (await db.collection("users").where("id", "==", review.user).get()).docs[0].data();

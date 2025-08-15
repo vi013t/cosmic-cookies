@@ -149,10 +149,12 @@ function normalize(text) {
  * @param {string} item the item name
  * @param {string} stars the number out of five of the review
  * @param {string} comment the comment for the review
+ * @param {string} image
+ * @param {string} description
  *
  * @returns {null | Promise<unknown>} The error, if one occurred.
  */
-async function review(item, stars, comment) {
+async function review(item, stars, comment, image, description) {
 	try {
 		let review = {
 			user: currentUser.id,
@@ -166,6 +168,9 @@ async function review(item, stars, comment) {
 		userRef.update({
 			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id),
 		});
+
+		await db.collection("items").add({ name: normalize(item), image, description });
+
 		return null;
 	} catch (error) {
 		return error;
