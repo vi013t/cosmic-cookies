@@ -99,7 +99,7 @@ async function logIn(email, password) {
 		await firebase.auth().signInWithEmailAndPassword(email, password);
 		return null;
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		return error;
 	}
 }
@@ -223,15 +223,12 @@ function onLogout(listener) {
 firebase.auth().onAuthStateChanged(async user => {
 	// Logged in
 	if (user) {
-		console.log("Logged in");
 		currentUser = (await db.collection("users").where("id", "==", user.uid).get()).docs[0].data();
-		console.log(currentUser);
 		loginHooks.forEach(hook => hook(currentUser));
 	}
 
 	// logged out
 	else {
-		console.log("Logged out");
 		logoutHooks.forEach(hook => hook());
 	}
 });

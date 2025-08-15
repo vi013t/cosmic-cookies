@@ -15,7 +15,6 @@ select(".star", star => {
 		}
 
 		stars = Array.from(star.parentElement.children).indexOf(star) + 1;
-		console.log(stars);
 	});
 });
 

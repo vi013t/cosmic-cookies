@@ -46,7 +46,6 @@ function sendFileWithData(response, path, data) {
 		.substring(5)
 		.replaceAll(/%20/g, " ")
 		.replaceAll(/C:\\/g, "");
-	console.log(filePath);
 	let html = readFileSync(filePath, { encoding: "utf8" });
 
 	let headAttributes = "";

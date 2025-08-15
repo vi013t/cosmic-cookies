@@ -5,6 +5,11 @@ select("*[data-item-name]", element => (element.textContent = itemName));
 
 const normalName = normalize(itemName);
 
+onLogout(() => {
+	select("#review-container").remove();
+	select("#log-in").style.display = "block";
+});
+
 db.collection("reviews")
 	.where("item", "==", normalName)
 	.get()
@@ -23,8 +28,23 @@ db.collection("reviews")
 
 		select("*[data-item-image]", img => (img.src = itemData.image));
 
-		reviews.forEach(async review => {
-			const author = (await db.collection("users").where("id", "==", review.user).get()).docs[0].data();
+		const reviewObjects = (
+			await Promise.all(
+				reviews.map(async review => {
+					const author = (await db.collection("users").where("id", "==", review.user).get()).docs[0].data();
+					return { author, review };
+				}),
+			)
+		).toSorted((obj1, obj2) => {
+			if (getUser()?.username === obj1.author.username) return -1;
+			if (getUser()?.username === obj2.author.username) return 1;
+			return 0;
+		});
+
+		reviewObjects.forEach(async ({ author, review }) => {
+			if (getUser()?.username === author.username) {
+				select("#review-container").remove();
+			}
 
 			const reviewElement = document.createElement("div");
 			reviewElement.classList.add("review");
