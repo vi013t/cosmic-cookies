@@ -20,6 +20,14 @@ select("#create", createButton => {
 		const username = select("#username").value;
 		const password = select("#password").value;
 
+		const errorMsg = select("#errorMsg");
+		if (!username.match(/^\w+$/)) {
+			errorMsg.innerHTML = "Please only use alphanumeric characters or underscores in your username.";
+			return;
+		} else {
+			errorMsg.innerHTML = "";
+		}
+
 		const error = await signUp(email, username, password);
 
 		if (error) {
