@@ -1,73 +1,75 @@
 let reviews = [];
-const searchTerm = new URLSearchParams(document.location.search).get("term");
+const params = new URLSearchParams(document.location.search);
+const searchTerm = params.get("term");
+const tags = params.getAll("tags");
 let allItems = [];
 const itemPages = [];
 const page = 1;
 
-db.collection("reviews")
-	.get()
-	.then(docs => {
-		docs.forEach(doc => reviews.push(doc.data()));
+Promise.all([db.collection("reviews").get(), db.collection("items").get()]).then(([reviewDocs, itemDocs]) => {
+	reviewDocs.forEach(doc => reviews.push(doc.data()));
+	itemDocs.forEach(doc => allItems.push(doc.data()));
 
-		const normalized = normalize(searchTerm);
-		allItems = Array.from(new Set(reviews.map(review => review.item)))
-			.map(itemName => {
-				const reviewsForThisItem = reviews.filter(other => other.item === itemName).map(review => review.stars);
-				return {
-					name: itemName,
-					rating: reviewsForThisItem.reduce((total, current) => current + total, 0) / reviewsForThisItem.length,
-				};
-			})
-			.toSorted((firstItem, secondItem) => levenshteinDistance(firstItem.name, normalized) - levenshteinDistance(secondItem.name, normalized));
+	const normalized = normalize(searchTerm);
+	allItems = Array.from(new Set(reviews.map(review => review.item)))
+		.filter(item => tags.every(tag => (allItems.find(other => other.name === item)?.tags ?? []).includes(tag)))
+		.map(itemName => {
+			const reviewsForThisItem = reviews.filter(other => other.item === itemName).map(review => review.stars);
+			return {
+				name: itemName,
+				rating: reviewsForThisItem.reduce((total, current) => current + total, 0) / reviewsForThisItem.length,
+			};
+		})
+		.toSorted((firstItem, secondItem) => levenshteinDistance(firstItem.name, normalized) - levenshteinDistance(secondItem.name, normalized));
 
-		const chunkSize = 10;
-		for (let i = 0; i < allItems.length; i += chunkSize) {
-			const page = allItems.slice(i, i + chunkSize);
-			itemPages.push(page);
-		}
+	const chunkSize = 10;
+	for (let i = 0; i < allItems.length; i += chunkSize) {
+		const page = allItems.slice(i, i + chunkSize);
+		itemPages.push(page);
+	}
 
-		itemPages[page - 1].forEach(item => {
-			const button = document.createElement("div");
-			button.setAttribute("data-item-name", item.name);
-			button.classList.add("item-listing");
+	itemPages[page - 1].forEach(item => {
+		const button = document.createElement("div");
+		button.setAttribute("data-item-name", item.name);
+		button.classList.add("item-listing");
 
-			const header = document.createElement("div");
-			header.classList.add("item-listing-header");
+		const header = document.createElement("div");
+		header.classList.add("item-listing-header");
 
-			const h3 = document.createElement("h3");
-			h3.textContent = item.name;
-			header.appendChild(h3);
+		const h3 = document.createElement("h3");
+		h3.textContent = item.name;
+		header.appendChild(h3);
 
-			const starContainer = document.createElement("div");
-			starContainer.classList.add("star-container");
-			header.appendChild(starContainer);
+		const starContainer = document.createElement("div");
+		starContainer.classList.add("star-container");
+		header.appendChild(starContainer);
 
-			const stars = document.createElement("img");
-			stars.src = "/assets/images/star5.png";
-			stars.classList.add("stars");
-			starContainer.appendChild(stars);
+		const stars = document.createElement("img");
+		stars.src = "/assets/images/star5.png";
+		stars.classList.add("stars");
+		starContainer.appendChild(stars);
 
-			const starBlocker = document.createElement("span");
-			starBlocker.classList.add("star-blocker");
-			starBlocker.style.width = `${(5 - item.rating) * 2}rem`;
-			starBlocker.innerHTML = `&nbsp;&nbsp;(${reviews.filter(review => review.item === item.name).length})`;
-			starContainer.appendChild(starBlocker);
+		const starBlocker = document.createElement("span");
+		starBlocker.classList.add("star-blocker");
+		starBlocker.style.width = `${(5 - item.rating) * 2}rem`;
+		starBlocker.innerHTML = `&nbsp;&nbsp;(${reviews.filter(review => review.item === item.name).length})`;
+		starContainer.appendChild(starBlocker);
 
-			const p = document.createElement("p");
-			p.textContent = "No description available.";
+		const p = document.createElement("p");
+		p.textContent = "No description available.";
 
-			button.appendChild(header);
-			button.appendChild(p);
+		button.appendChild(header);
+		button.appendChild(p);
 
-			select("#items").appendChild(button);
-		});
+		select("#items").appendChild(button);
+	});
 
-		select(".item-listing", button => {
-			button.addEventListener("click", () => {
-				window.location.href = `/item/${button.getAttribute("data-item-name")}`;
-			});
+	select(".item-listing", button => {
+		button.addEventListener("click", () => {
+			window.location.href = `/item/${button.getAttribute("data-item-name")}`;
 		});
 	});
+});
 
 select(".new > button").addEventListener("click", () => {
 	window.location.href = "/review";
