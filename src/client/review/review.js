@@ -23,6 +23,16 @@ select("#submit").addEventListener("click", async () => {
 	const image = select("#image").value;
 	const comments = select("#comments").value;
 	const description = select("#description").value;
+	
+	const errorMsg = select("#errorMsg");
+	
+	if( !item.match(/^[A-Za-z0-9-_.:#$'+=%]+$/) ) {
+		errorMsg.innerHTML = "Invalid character in item name";
+		return;
+	} else {
+		errorMsg.innerHTML = "";
+	}
+	
 	const error = await review(item, stars, comments, image, description);
 
 	if (error) {
