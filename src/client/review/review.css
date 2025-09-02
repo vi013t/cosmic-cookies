@@ -73,3 +73,28 @@ textarea {
 	display: flex;
 	justify-content: center;
 }
+
+#tags {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	.tag {
+		width: 15rem;
+	}
+}
+
+#add-tag {
+	background: linear-gradient(to top, #89b4fa, #b4befe);
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	width: fit-content;
+	border-radius: 0.5rem;
+	box-shadow: 0px 0px 0.5rem black;
+	font-weight: 500;
+	transition: scale 0.1s;
+	margin-bottom: 3rem;
+
+	&:hover {
+		scale: 105%;
+	}
+}

@@ -27,6 +27,10 @@ select("#submit").addEventListener("click", async () => {
 	const errorMsg = select("#errorMsg");
 	
 	if( !item.match(/^[A-Za-z0-9-_.:#$'+=%]+$/) ) {
+		.filter(tag => tag);
+
+	const errorMsg = select("#errorMsg");
+	if (!item.match(/^[A-Za-z0-9-_.:#$'+=%]+$/)) {
 		errorMsg.innerHTML = "Invalid character in item name";
 		return;
 	} else {

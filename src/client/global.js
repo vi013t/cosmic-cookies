@@ -154,13 +154,13 @@ function normalize(text) {
  *
  * @returns {null | Promise<unknown>} The error, if one occurred.
  */
-async function review(item, stars, comment, image, description) {
+async function review(item, stars, comment, image, description, tags) {
 	try {
 		let review = {
 			user: currentUser.id,
 			item: normalize(item),
-			stars: stars,
-			comment: comment,
+			stars,
+			comment,
 		};
 		const reviewId = await db.collection("reviews").doc();
 		await reviewId.set(review);
@@ -169,7 +169,7 @@ async function review(item, stars, comment, image, description) {
 			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id),
 		});
 
-		await db.collection("items").add({ name: normalize(item), image, description });
+		await db.collection("items").add({ name: normalize(item), image, description, tags });
 
 		return null;
 	} catch (error) {
@@ -247,8 +247,9 @@ function getServerData(key) {
  *
  * @returns {void}
  */
-function search(term) {
+function search(term, tags = []) {
 	const params = new URLSearchParams({ term: normalize(term) });
+	tags.forEach(tag => params.append("tags", tag));
 	const url = new URL(window.location.href);
 	window.location.href = new URL(`${url.origin}/search?${params}`).href;
 }
