@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static("src/client"));
 app.use(express.json());
 
-const port = 3000;
+const port = process?.env?.PORT || 3000;
 const hostname = "localhost";
 
 /**
@@ -70,6 +70,6 @@ app.get("/", (_request, response) => {
 	response.redirect("/home");
 });
 
-app.listen(port, hostname, () => {
-	console.log(`http://${hostname}:${port}`);
+app.listen(port, () => {
+	console.log(`Port: ${port}`);
 });
