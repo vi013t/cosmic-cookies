@@ -23,25 +23,33 @@ select("#submit").addEventListener("click", async () => {
 	const image = select("#image").value;
 	const comments = select("#comments").value;
 	const description = select("#description").value;
-	
 	const errorMsg = select("#errorMsg");
+	var tags = select(".tag");
 	
-	if( !item.match(/^[A-Za-z0-9-_.:#$'+=%]+$/) ) {
-		.filter(tag => tag);
+	if ( Array.isArray(tags) ){
+		tags.map(element => element.value.trim()).filter(tag => tag);
+	} else {
+		tags = [ tags ];
+	}
 
-	const errorMsg = select("#errorMsg");
 	if (!item.match(/^[A-Za-z0-9-_.:#$'+=%]+$/)) {
 		errorMsg.innerHTML = "Invalid character in item name";
 		return;
 	} else {
 		errorMsg.innerHTML = "";
 	}
-	
-	const error = await review(item, stars, comments, image, description);
+
+	const error = await review(item, stars, comments, image, description, tags);
 
 	if (error) {
 		console.error(error);
 	} else {
 		window.location.href = `/item/${normalize(item)}`;
 	}
+});
+
+select("#add-tag").addEventListener("click", event => {
+	const input = document.createElement("input");
+	input.classList.add("tag");
+	select("#tags").appendChild(input);
 });

@@ -26,3 +26,10 @@ select(".show-password", button => {
 		}
 	});
 });
+
+select("#signup", button => {
+	button.addEventListener("click", event => {
+		window.location.href = "/signup";
+	});
+});
+

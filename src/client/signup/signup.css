@@ -4,7 +4,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	gap: 1rem;
-	background-image: linear-gradient(to bottom, #1e1e2e, #181825);
+	
 	height: 100%;
 
 	>div {
@@ -17,6 +17,9 @@ main {
 			color: #9399b2;
 		}
 	}
+}
+body {
+	background-image: linear-gradient(to bottom, #1e1e2e, #181825);
 }
 
 input {

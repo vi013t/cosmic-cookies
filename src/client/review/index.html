@@ -17,6 +17,7 @@
 	<body>
 		<nav>
 			<a href="/">Home</a>
+			<a href="/review">Make Review</a>
 			<a href="/profile">Profile</a>
 		</nav>
 
@@ -54,7 +55,19 @@
 				<textarea id="comments"></textarea>
 			</div>
 
-			<div class="input"><h3 id="errorMsg"></h3></div>
+
+			<div class="input">
+				<h3>Tags</h3>
+				<div id="tags">
+					<input class="tag" />
+				</div>
+				<button id="add-tag">Add Another</button>
+			</div>
+
+			<div class="input">
+				<h3 id="errorMsg"></h3>
+			</div>
+
 			<button id="submit">Submit</button>
 		</main>
 	</body>
