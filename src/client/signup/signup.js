@@ -21,6 +21,13 @@ select("#create", createButton => {
 		const password = select("#password").value;
 		let errorMsg = select("#errorMsg");
 
+		if (password.length < 6) {
+			errorMsg.innerHTML = "Password must be at least 6 characters";
+			return;
+		} else {
+			errorMsg.innerHTML = "";
+		}
+
 		if (!username.match(/^\w+$/)) {
 			errorMsg.innerHTML = "Please only use alphanumeric characters or underscores in your username.";
 			return;
