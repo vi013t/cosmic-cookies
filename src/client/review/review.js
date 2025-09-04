@@ -19,12 +19,18 @@ select(".star", star => {
 });
 
 select("#submit").addEventListener("click", async () => {
+	const errorMsg = select("#errorMsg");
+
+	if (!getUser()) {
+		errorMsg.innerHTML = "You must be signed in to leave a review";
+		return;
+	}
+
 	const item = select("#item").value;
 	const image = select("#image").value;
 	const comments = select("#comments").value;
 	const description = select("#description").value;
-	const errorMsg = select("#errorMsg");
-	var tags = [];
+	var tags = Array.from(document.querySelectorAll(".tag")).map(element => element.value);
 
 	if (!item.match(/^[A-Za-z0-9-_.:#$'+=%]+$/)) {
 		errorMsg.innerHTML = "Invalid character in item name";
