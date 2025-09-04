@@ -17,23 +17,21 @@ db.collection("reviews")
 		docs.forEach(doc => reviews.push(doc.data()));
 
 		let itemEntry = (await db.collection("items").where("name", "==", normalName).get()).docs;
-		if (docs.size === 0) {
+		if (itemEntry.length === 0) {
 			await db.collection("items").add({
 				name: normalName,
 				image: "https://as2.ftcdn.net/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg",
 			});
 			itemEntry = (await db.collection("items").where("name", "==", normalName).get()).docs;
 		}
+
 		const itemData = itemEntry[0].data();
 
 		select("*[data-item-image]", img => (img.src = itemData.image));
 
 		const reviewObjects = (
 			await Promise.all(
-				reviews.map(async review => {
-					const author = (await db.collection("users").where("id", "==", review.user).get()).docs[0].data();
-					return { author, review };
-				}),
+				reviews.map(async review => ({ author: (await db.collection("users").where("id", "==", review.user).get()).docs[0].data(), review })),
 			)
 		).toSorted((obj1, obj2) => {
 			if (getUser()?.username === obj1.author.username) return -1;
@@ -87,3 +85,11 @@ db.collection("reviews")
 			select("main").appendChild(reviewElement);
 		});
 	});
+
+select("#post", button => {
+	button.addEventListener("click", async () => {
+		const body = select("#your-review").value;
+		const error = await reviewExisting(itemName, 5, body);
+		window.location.reload();
+	});
+});

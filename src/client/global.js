@@ -177,6 +177,27 @@ async function review(item, stars, comment, image, description, tags) {
 	}
 }
 
+async function reviewExisting(item, stars, comment) {
+	try {
+		let review = {
+			user: currentUser.id,
+			item: normalize(item),
+			stars,
+			comment,
+		};
+		const reviewId = await db.collection("reviews").doc();
+		await reviewId.set(review);
+		userRef = await db.collection("users").doc(currentUser.id);
+		userRef.update({
+			reviews: firebase.firestore.FieldValue.arrayUnion(reviewId.id),
+		});
+
+		return null;
+	} catch (error) {
+		return error;
+	}
+}
+
 /**
  * Logs the user out of their account. If an error occurs while attempting
  * to sign out, the error is returned (wrapped in a promise). Otherwise,
